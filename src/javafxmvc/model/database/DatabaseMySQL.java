@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Rafael Vargas Mesquita
+ * @author brenothales
  */
 public class DatabaseMySQL implements Database {
 
@@ -18,10 +18,10 @@ public class DatabaseMySQL implements Database {
     public Connection conectar() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/javafxmvc", "postgres","postgres");
+            this.connection = DriverManager.getConnection("jdbc:mysql://localhost:8889/javafxmvc", "root","root");
             return this.connection;
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(DatabasePostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -31,7 +31,7 @@ public class DatabaseMySQL implements Database {
         try {
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DatabasePostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
