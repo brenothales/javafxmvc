@@ -12,6 +12,14 @@
             <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/model/database/DatabaseMySQL.java</file>
             <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/model/dao/ClienteDAO.java</file>
         </group>
-        <group name="Senai"/>
+        <group name="Senai">
+            <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/model/dao/VendaDAO.java</file>
+            <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/model/domain/Cliente.java</file>
+            <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/controller/FXMLAnchorPaneCadastrosClientesController.java</file>
+            <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/model/domain/Categoria.java</file>
+            <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/controller/FXMLAnchorPaneCadastrosClientesDialogController.java</file>
+            <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/view/FXMLAnchorPaneCadastrosClientesDialog.fxml</file>
+            <file>file:/Users/brenothales/Downloads/Projeto/JavaFX-MVC/src/javafxmvc/model/dao/ClienteDAO.java</file>
+        </group>
     </open-files>
 </project-private>

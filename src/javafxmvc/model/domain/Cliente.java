@@ -12,10 +12,11 @@ public class Cliente implements Serializable {
     public Cliente(){
     }
     
-    public Cliente(int cdCliente, String nome, String cpf) {
+    public Cliente(int cdCliente, String nome, String cpf, String telefone) {
         this.cdCliente = cdCliente;
         this.nome = nome;
         this.cpf = cpf;
+        this.telefone = telefone;
     }
 
     public int getCdCliente() {
@@ -49,6 +50,7 @@ public class Cliente implements Serializable {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
 
     @Override
     public String toString() {

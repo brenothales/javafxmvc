@@ -29,9 +29,11 @@ public class FXMLAnchorPaneCadastrosClientesDialogController implements Initiali
     private Button buttonConfirmar;
     @FXML
     private Button buttonCancelar;
-
+//    necessária para abrir e fechar 
     private Stage dialogStage;
+//    necessária para retorna em qual botão o usuário clicou confirma ou cancelar
     private boolean buttonConfirmarClicked = false;
+//    refere-se aos dados do cliente
     private Cliente cliente;
 
     @Override
@@ -58,7 +60,7 @@ public class FXMLAnchorPaneCadastrosClientesDialogController implements Initiali
     public Cliente getCliente() {
         return cliente;
     }
-
+//    Alterar para setar os valores na hora de editar
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
         this.textFieldClienteNome.setText(cliente.getNome());
@@ -68,7 +70,7 @@ public class FXMLAnchorPaneCadastrosClientesDialogController implements Initiali
 
     @FXML
     public void handleButtonConfirmar() {
-
+//           crie um metodo para verificar se os dados não estão vazios
         if (validarEntradaDeDados()) {
 
             cliente.setNome(textFieldClienteNome.getText());

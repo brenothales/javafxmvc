@@ -1,5 +1,6 @@
 package javafxmvc.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.List;
@@ -7,12 +8,17 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafxmvc.model.dao.ClienteDAO;
 import javafxmvc.model.database.Database;
 import javafxmvc.model.database.DatabaseFactory;
@@ -82,6 +88,68 @@ public class FXMLAnchorPaneCadastrosClientesController implements Initializable 
             labelClienteCPF.setText("");
             labelClienteTelefone.setText("");
         }
+
+    }
+//    Aula 3
+    @FXML
+    public void handleButtonInserir() throws IOException {
+        Cliente cliente = new Cliente();
+        boolean buttonConfirmarClicked = showFXMLAnchorPaneCadastrosClientesDialog(cliente);
+        if (buttonConfirmarClicked) {
+            clienteDAO.inserir(cliente);
+            carregarTableViewCliente();
+        }
+    }
+
+    @FXML
+    public void handleButtonAlterar() throws IOException {
+        Cliente cliente = tableViewClientes.getSelectionModel().getSelectedItem();
+        if (cliente != null) {
+            boolean buttonConfirmarClicked = showFXMLAnchorPaneCadastrosClientesDialog(cliente);
+            if (buttonConfirmarClicked) {
+                clienteDAO.alterar(cliente);
+                carregarTableViewCliente();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, escolha um cliente na Tabela!");
+            alert.show();
+        }
+    }
+
+    @FXML
+    public void handleButtonRemover() throws IOException {
+        Cliente cliente = tableViewClientes.getSelectionModel().getSelectedItem();
+        if (cliente != null) {
+            clienteDAO.remover(cliente);
+            carregarTableViewCliente();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, escolha um cliente na Tabela!");
+            alert.show();
+        }
+    }
+    
+    public boolean showFXMLAnchorPaneCadastrosClientesDialog(Cliente cliente) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(FXMLAnchorPaneCadastrosClientesDialogController.class.getResource("/javafxmvc/view/FXMLAnchorPaneCadastrosClientesDialog.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Criando um Estágio de Diálogo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Cadastro de Clientes");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+
+        // Setando o cliente no Controller.
+        FXMLAnchorPaneCadastrosClientesDialogController controller = loader.getController();
+        controller.setDialogStage(dialogStage);
+        controller.setCliente(cliente);
+
+        // Mostra o Dialog e espera até que o usuário o feche
+        dialogStage.showAndWait();
+
+        return controller.isButtonConfirmarClicked();
 
     }
 
