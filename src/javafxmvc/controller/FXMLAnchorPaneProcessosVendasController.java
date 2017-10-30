@@ -26,3 +26,16 @@
     private Button buttonAlterar;
     @FXML
     private Button buttonRemover;
+    
+    
+    private List<Venda> listVendas;
+    private ObservableList<Venda> observableListVendas;
+    
+//    Atribuir para manipulação de banco de dados
+    private final Database database = DatabaseFactory.getDatabase("postgresql");
+    private final Connection connection = database.conectar();
+    private final VendaDAO vendaDAO = new VendaDAO();
+    private final ItemDeVendaDAO itemDeVendaDAO = new ItemDeVendaDAO();
+    private final ProdutoDAO produtoDAO = new ProdutoDAO();
+    
+
