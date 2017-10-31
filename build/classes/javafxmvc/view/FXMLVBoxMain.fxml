@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmvc.controller.FXMLVBoxMainController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmvc.controller.FXMLVBoxMainController">
    <children>
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="Cadastros">
             <items>
               <MenuItem mnemonicParsing="false" text="Categorias" />
-                  <MenuItem fx:id="menuItemCadastroClientes" onAction="#handleMenuItemCadastrosClientes" mnemonicParsing="false" text="Clientes" />
+                  <MenuItem fx:id="menuItemCadastroClientes" mnemonicParsing="false" onAction="#handleMenuItemCadastrosClientes" text="Clientes" />
                   <MenuItem mnemonicParsing="false" text="Produtos" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Processos">
             <items>
-              <MenuItem fx:id="menuItemProcessosVendas" mnemonicParsing="false" text="Vendas" />
+              <MenuItem fx:id="menuItemProcessosVendas" mnemonicParsing="false" onAction="#handleMenuItemProcessosVendas" text="Vendas" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Gráficos">
