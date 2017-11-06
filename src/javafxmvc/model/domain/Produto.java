@@ -1,23 +1,27 @@
+
 package javafxmvc.model.domain;
 
 import java.io.Serializable;
 
+
 public class Produto implements Serializable {
-
-    private int cdProduto;
-    private String nome;
-    private double preco;
-    private int quantidade;
-    private Categoria categoria;
-
-    public Produto() {
+    
+   private int cdProduto;
+   private String nome;
+   private double preco;
+   private int quantidade;
+   private Categoria categoria;
+   
+       public Produto(){
     }
 
-    public Produto(int cdProduto, String nome, double preco, int quantidade) {
+
+    public Produto(int cdProduto, String nome, double preco, int quantidade, Categoria categoria) {
         this.cdProduto = cdProduto;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
+        this.categoria = categoria;
     }
 
     public int getCdProduto() {
@@ -59,10 +63,7 @@ public class Produto implements Serializable {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
-    @Override
-    public String toString() {
-        return this.nome;
-    }
+   
+   
     
 }

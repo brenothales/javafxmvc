@@ -89,6 +89,8 @@ public class FXMLAnchorPaneProcessosVendasController implements Initializable {
                 (observable, oldValue, newValue) -> selecionarItemTableViewVendas(newValue));
     }
 
+   
+    
     public void selecionarItemTableViewVendas(Venda venda) {
         if (venda != null) {
             labelVendaCodigo.setText(String.valueOf(venda.getCdVenda()));
@@ -104,6 +106,12 @@ public class FXMLAnchorPaneProcessosVendasController implements Initializable {
             labelVendaCliente.setText("");
         }
     }
+    
+    
+    
+    
+    
+    
 
     public void carregarTableViewVendas() {
         tableColumnVendaCodigo.setCellValueFactory(new PropertyValueFactory<>("cdVenda"));

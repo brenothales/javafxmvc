@@ -1,3 +1,4 @@
+
 package javafxmvc.model.domain;
 
 import java.io.Serializable;
@@ -5,22 +6,23 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Venda implements Serializable {
-
     private int cdVenda;
     private LocalDate data;
     private double valor;
     private boolean pago;
     private List<ItemDeVenda> itensDeVenda;
     private Cliente cliente;
-
-    public Venda() {
+    
+   public Venda(){
     }
 
-    public Venda(int cdvenda, LocalDate data, double valor, boolean pago) {
-        this.cdVenda = cdvenda;
+    public Venda(int cdVenda, LocalDate data, double valor, boolean pago, List<ItemDeVenda> itensDeVenda, Cliente cliente) {
+        this.cdVenda = cdVenda;
         this.data = data;
         this.valor = valor;
         this.pago = pago;
+        this.itensDeVenda = itensDeVenda;
+        this.cliente = cliente;
     }
 
     public int getCdVenda() {
@@ -70,5 +72,7 @@ public class Venda implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
+    
     
 }

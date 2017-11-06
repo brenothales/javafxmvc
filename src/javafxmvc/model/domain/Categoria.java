@@ -1,13 +1,14 @@
+
 package javafxmvc.model.domain;
 
 import java.io.Serializable;
 
-public class Categoria implements Serializable {
 
-    private int cdCategoria;
-    private String descricao;
-    
-    public Categoria(){
+public class Categoria implements Serializable {
+   private int cdCategoria;
+   private String descricao;
+   
+   public Categoria(){
     }
 
     public Categoria(int cdCategoria, String descricao) {
@@ -30,10 +31,6 @@ public class Categoria implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    @Override
-    public String toString() {
-        return this.descricao;
-    }
-    
+   
+   
 }

@@ -1,16 +1,24 @@
+
 package javafxmvc.model.domain;
 
 import java.io.Serializable;
 
+
 public class ItemDeVenda implements Serializable {
+   private int cdItemDeVenda;
+   private int quantidade;
+   private double valor;
+   private Produto produto;
+   private Venda venda;
 
-    private int cdItemDeVenda;
-    private int quantidade;
-    private double valor;
-    private Produto produto;
-    private Venda venda;
-
-    public ItemDeVenda() {
+    public ItemDeVenda(){
+    }
+    public ItemDeVenda(int cdItemDeVenda, int quantidade, double valor, Produto produto, Venda venda) {
+        this.cdItemDeVenda = cdItemDeVenda;
+        this.quantidade = quantidade;
+        this.valor = valor;
+        this.produto = produto;
+        this.venda = venda;
     }
 
     public int getCdItemDeVenda() {
@@ -28,7 +36,7 @@ public class ItemDeVenda implements Serializable {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-    
+
     public double getValor() {
         return valor;
     }
@@ -52,5 +60,6 @@ public class ItemDeVenda implements Serializable {
     public void setVenda(Venda venda) {
         this.venda = venda;
     }
-    
+   
+   
 }
