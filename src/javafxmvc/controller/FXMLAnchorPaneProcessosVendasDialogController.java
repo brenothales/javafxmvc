@@ -109,3 +109,22 @@ public class FXMLAnchorPaneProcessosVendasDialogController implements Initializa
         observableListProdutos = FXCollections.observableArrayList(listProdutos);
         comboBoxVendaProduto.setItems(observableListProdutos);
     }
+    public Stage getDialogStage() {
+        return dialogStage;
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
+
+    public Venda getVenda() {
+        return this.venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+
+    public boolean isButtonConfirmarClicked() {
+        return buttonConfirmarClicked;
+    }
