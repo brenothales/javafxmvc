@@ -98,3 +98,14 @@ public class FXMLAnchorPaneProcessosVendasDialogController implements Initializa
         tableColumnItemDeVendaQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         tableColumnItemDeVendaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
     }
+    public void carregarComboBoxClientes() {
+        listClientes = clienteDAO.listar();
+        observableListClientes = FXCollections.observableArrayList(listClientes);
+        comboBoxVendaCliente.setItems(observableListClientes);
+    }
+
+    public void carregarComboBoxProdutos() {
+        listProdutos = produtoDAO.listar();
+        observableListProdutos = FXCollections.observableArrayList(listProdutos);
+        comboBoxVendaProduto.setItems(observableListProdutos);
+    }
