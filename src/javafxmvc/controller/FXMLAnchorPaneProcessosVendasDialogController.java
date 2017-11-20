@@ -98,6 +98,24 @@ public class FXMLAnchorPaneProcessosVendasDialogController implements Initializa
         tableColumnItemDeVendaQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         tableColumnItemDeVendaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
     }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public void carregarComboBoxClientes() {
         listClientes = clienteDAO.listar();
         observableListClientes = FXCollections.observableArrayList(listClientes);
@@ -109,6 +127,7 @@ public class FXMLAnchorPaneProcessosVendasDialogController implements Initializa
         observableListProdutos = FXCollections.observableArrayList(listProdutos);
         comboBoxVendaProduto.setItems(observableListProdutos);
     }
+
     public Stage getDialogStage() {
         return dialogStage;
     }
@@ -128,3 +147,70 @@ public class FXMLAnchorPaneProcessosVendasDialogController implements Initializa
     public boolean isButtonConfirmarClicked() {
         return buttonConfirmarClicked;
     }
+
+    @FXML
+    public void handleButtonAdicionar() {
+        Produto produto;
+        ItemDeVenda itemDeVenda = new ItemDeVenda();
+        if (comboBoxVendaProduto.getSelectionModel().getSelectedItem() != null) {
+            produto = (Produto) comboBoxVendaProduto.getSelectionModel().getSelectedItem();
+            if (produto.getQuantidade() >= Integer.parseInt(textFieldVendaItemDeVendaQuantidade.getText())) {
+                itemDeVenda.setProduto((Produto) comboBoxVendaProduto.getSelectionModel().getSelectedItem());
+                itemDeVenda.setQuantidade(Integer.parseInt(textFieldVendaItemDeVendaQuantidade.getText()));
+                itemDeVenda.setValor(itemDeVenda.getProduto().getPreco() * itemDeVenda.getQuantidade());
+                venda.getItensDeVenda().add(itemDeVenda);
+                venda.setValor(venda.getValor() + itemDeVenda.getValor());
+                observableListItensDeVenda = FXCollections.observableArrayList(venda.getItensDeVenda());
+                tableViewItensDeVenda.setItems(observableListItensDeVenda);
+                textFieldVendaValor.setText(String.format("%.2f", venda.getValor()));
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Problemas na escolha do produto!");
+                alert.setContentText("Não existe a quantidade de produtos disponíveis no estoque!");
+                alert.show();
+            }
+        }
+    }
+
+    @FXML
+    public void handleButtonConfirmar() {
+        if (validarEntradaDeDados()) {
+            venda.setCliente((Cliente) comboBoxVendaCliente.getSelectionModel().getSelectedItem());
+            venda.setPago(checkBoxVendaPago.isSelected());
+            venda.setData(datePickerVendaData.getValue());
+            buttonConfirmarClicked = true;
+            dialogStage.close();
+        }
+    }
+
+    @FXML
+    public void handleButtonCancelar() {
+        getDialogStage().close();
+    }
+
+    //Validar entrada de dados para o cadastro
+    private boolean validarEntradaDeDados() {
+        String errorMessage = "";
+        if (comboBoxVendaCliente.getSelectionModel().getSelectedItem() == null) {
+            errorMessage += "Cliente inválido!\n";
+        }
+        if (datePickerVendaData.getValue() == null) {
+            errorMessage += "Data inválida!\n";
+        }
+        if (observableListItensDeVenda == null) {
+            errorMessage += "Itens de Venda inválidos!\n";
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            // Mostrando a mensagem de erro
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro no cadastro");
+            alert.setHeaderText("Campos inválidos, por favor, corrija...");
+            alert.setContentText(errorMessage);
+            alert.show();
+            return false;
+        }
+    }
+
+}
