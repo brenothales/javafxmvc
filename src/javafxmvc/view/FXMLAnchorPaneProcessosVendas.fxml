@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="javafxmvc.controller.FXMLAnchorPaneProcessosVendasController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmvc.controller.FXMLAnchorPaneProcessosVendasController">
    <children>
       <SplitPane dividerPositions="0.4080267558528428" layoutX="178.0" layoutY="132.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -60,9 +59,9 @@
                         <Label fx:id="labelVendaCliente" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
-                  <Group layoutX="101.0" layoutY="345.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                  <Group layoutX="101.0" layoutY="345.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="20.0">
                      <children>
-                        <Button fx:id="buttonInserir" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Inserir" />
+                        <Button fx:id="buttonInserir" mnemonicParsing="false" onAction="#handleButtonInserir" prefHeight="27.0" prefWidth="66.0" text="Inserir" />
                         <Button fx:id="buttonAlterar" layoutX="77.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Alterar" />
                         <Button fx:id="buttonRemover" layoutX="153.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" text="Remover" />
                      </children>

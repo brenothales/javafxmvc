@@ -5,26 +5,33 @@
  */
 package javafxmvc.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafxmvc.model.dao.ItemDeVendaDAO;
 import javafxmvc.model.dao.ProdutoDAO;
 import javafxmvc.model.dao.VendaDAO;
 import javafxmvc.model.database.Database;
 import javafxmvc.model.database.DatabaseFactory;
+import javafxmvc.model.domain.ItemDeVenda;
 import javafxmvc.model.domain.Venda;
 
 /**
@@ -122,6 +129,37 @@ public class FXMLAnchorPaneProcessosVendasController implements Initializable {
 
         observableListVendas = FXCollections.observableArrayList(listVendas);
         tableViewVendas.setItems(observableListVendas);
+    }
+    
+    
+    @FXML
+    public void handleButtonInserir() throws IOException {
+        Venda venda = new Venda();
+        List<ItemDeVenda> listItensDeVenda = new ArrayList<>();
+        venda.setItensDeVenda(listItensDeVenda);
+        boolean buttonConfirmarClicked = showFXMLAnchorPaneProcessosVendasDialog(venda);
+        if (buttonConfirmarClicked) {
+            vendaDAO.inserir(venda);
+            carregarTableViewVendas ();
+        }
+    }
+    
+    public boolean showFXMLAnchorPaneProcessosVendasDialog(Venda venda) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(FXMLAnchorPaneProcessosVendasDialogController.class.getResource("/javafxmvc/view/FXMLAnchorPaneProcessosVendasDialog.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        // Criando um Estágio de Diálogo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Registro de Vendas");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        // Setando a Venda no Controller.
+        FXMLAnchorPaneProcessosVendasDialogController controller = loader.getController();
+        controller.setDialogStage(dialogStage);
+        controller.setVenda(venda);
+        // Mostra o Dialog e espera até que o usuário o feche
+        dialogStage.showAndWait();
+        return controller.isButtonConfirmarClicked();
     }
     
 }
